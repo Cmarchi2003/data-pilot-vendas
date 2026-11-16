@@ -222,4 +222,7 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# .vscode/ ignora as configurações do Visual Studio Code, incluindo extensões, depuradores e configurações de espaço de trabalho. Se você deseja manter essas configurações no controle de versão, remova a linha abaixo.
+.vscode/
+
 .vscode/
