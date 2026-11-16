@@ -1,3 +1,4 @@
+#from Decimal import Decimal
 import pandas as pd
 
 
@@ -19,16 +20,16 @@ def completed_orders(df: pd.DataFrame) -> pd.DataFrame:
 
 def total_revenue(df: pd.DataFrame) -> float:
     """
-    Calcula a receita total considerando apenas pedidos concluídos.
+    Calcula a receitas total considerando apenas pedidos concluídos.
 
     Parâmetros:
         df (pd.DataFrame): DataFrame contendo os dados de vendas.
 
     Retorna:
-        float: Receita total arredondada em 2 casas decimais.
+        float: receitas total arredondada em 2 casas decimais.
     """
     validos = completed_orders(df)
-    return round(float(validos["receita"].sum()), 2)
+    return round(float(validos["receitas"].sum()), 2)
 
 
 # ################ Métricas de Negócio ################
@@ -109,33 +110,33 @@ def cancellation_rate(df: pd.DataFrame) -> float:
 
 def monthly_revenue(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Agrupa a receita total dos pedidos concluídos por mês (YYYY-MM).
+    Agrupa a receitas total dos pedidos concluídos por mês (YYYY-MM).
 
     Parâmetros:
         df (pd.DataFrame): DataFrame contendo os dados de vendas.
 
     Retorna:
-        pd.DataFrame: Tabela com as colunas 'mes' e 'receita' ordenadas cronologicamente.
+        pd.DataFrame: Tabela com as colunas 'mes' e 'receitas' ordenadas cronologicamente.
     """
     validos = completed_orders(df)
     if "mes" not in validos.columns:
         validos["mes"] = pd.to_datetime(validos["data"]).dt.to_period("M").astype(str)
 
     return (
-        validos.groupby("mes", as_index=False)["receita"]
+        validos.groupby("mes", as_index=False)["receitas"]
         .sum()
-        .round({"receita": 2}) #uso da função round() para arredondar a coluna 'receita' para 2 casas decimais
+        .round({"receitas": 2}) #uso da função round() para arredondar a coluna 'receitas' para 2 casas decimais
         .sort_values("mes")
     )
 
 if __name__ == "__main__":
     df_test = pd.read_csv("data/processed/sales_clean.csv", sep=";", decimal=",")
 
-    print(f"Receita Total: R$ {total_revenue(df_test):,.2f}")
+    print(f"receitas Total: R$ {total_revenue(df_test):,.2f}")
     print(f"Total de Pedidos Concluídos: {total_orders(df_test)}")
     print(f"Produtos Vendidos: {products_sold(df_test)}")
     print(f"Clientes Únicos: {unique_clients(df_test)}")
     print(f"Ticket Médio: R$ {average_ticket(df_test):,.2f}")
     print(f"Taxa de Cancelamento: {cancellation_rate(df_test):.2f}%")
-    print("\nReceita Mensal:")
+    print("\nreceitas Mensal:")
     print(monthly_revenue(df_test))
