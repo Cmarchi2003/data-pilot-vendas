@@ -53,8 +53,9 @@ Portfólio Documentado com Capturas de Tela: Documentação técnica estruturada
 
 ### 3. Loja Fachada (Simulador de Pedidos ao Vivo)
 ![Loja Fachada](assets/loja_teste.png)
-🏗️ Arquitetura do Projeto
 
+🏗️ Arquitetura do Projeto
+``` text
 data-pilot-vendas/
 ├── assets/                     # Capturas de tela para documentação
 ├── data/
@@ -72,7 +73,7 @@ data-pilot-vendas/
 ├── .env.example                # Modelo de variáveis de ambiente
 ├── requirements.txt            # Dependências do projeto
 └── README.md
-
+```
 
 🛠️ Tecnologias Utilizadas
 
