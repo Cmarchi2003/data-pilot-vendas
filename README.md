@@ -8,7 +8,7 @@ O sistema foi desenhado sob o princípio "Python calcula, IA explica": todas as 
 
 ✨ Funcionalidades Principais
 
-📊 Painel Executivo Interativo (Painel de Vendas):
+📊 Painel Executivo Interativo (Painel de Vendas)
 
 Filtros dinâmicos por categoria de produto.
 
@@ -18,35 +18,59 @@ Gráfico de evolução da Receita Mensal com Plotly.
 
 Funil de Conversão por Produto (Carrinho → Compra): Mede quantos clientes adicionaram cada produto ao carrinho, quantos concluíram a compra, o percentual de conversão e a razão ("a cada X clientes interessados, 1 compra é concluída").
 
-🤖 Agente Analista de Dados (Chat com os Dados):
+🤖 Agente Analista de Dados (Chat com os Dados)
 
 Conversa em linguagem natural conectada ao OpenRouter com suporte a Tool Calling (chamada de funções) e sistema automático de fallback entre modelos gratuitos.
 
-Aciona diretamente as funções de src/metrics.py para responder perguntas sobre faturamento, categorias, histórico mensal e gargalos de conversão.
+Aciona diretamente as funções de src/metrics.py para responder perguntas sobre faturamento, categorias, histórico mensal e gargalos de conversão por produto.
 
-🛒 Simulador de E-commerce ao Vivo (Loja Fachada):
+🛒 Simulador de E-commerce ao Vivo (Loja Fachada)
 
 Vitrine interativa gerada a partir do catálogo real do dataset.
 
 Permite simular adição ao carrinho (status="carrinho"), finalização de pedido (status="concluido") e cancelamento (status="cancelado"), gravando os eventos diretamente no CSV processado e recalculando os KPIs instantaneamente.
 
+🎯 Desafios Avançados Implementados
+
+Além do escopo base da trilha, o projeto contempla quatro evoluções completas de portfólio:
+
+Nova Métrica de Negócio: Criação da métrica de Taxa de Conversão de Carrinho por Produto (product_conversion_rate) e contagem de Clientes Únicos (unique_clients) em src/metrics.py.
+
+Nova Visualização Analítica: Tabela interativa de Conversão por Produto com barras de progresso integradas e indicador de esforço por venda (clientes por compra concluída).
+
+Nova Intenção com Parâmetro no Agente: Ferramenta get_product_conversion(produto=...) no src/agent.py, permitindo consultar o funil geral ou filtrar por um produto específico via linguagem natural.
+
+Portfólio Documentado com Capturas de Tela: Documentação técnica estruturada com demonstração visual das três telas da aplicação.
+
+📸 Demonstração da Interface
+### 1. Painel de Vendas e Conversão por Produto
+![Painel de Vendas](assets/dashboard.png)
+![Painel taxa de conversao](assets/conversao_produtos.png)
+![Painel receita mensal](assets/receita_mensal.png)
+
+### 2. Conversa com os Dados (Agente de IA)
+![Chat com os Dados](assets/chat_dados.png)
+
+### 3. Loja Fachada (Simulador de Pedidos ao Vivo)
+![Loja Fachada](assets/loja_teste.png)
 🏗️ Arquitetura do Projeto
 
 data-pilot-vendas/
+├── assets/                     # Capturas de tela para documentação
 ├── data/
 │   ├── raw/
-│   │   └── sales.csv              # Base bruta de vendas
+│   │   └── sales.csv           # Base bruta de vendas
 │   └── processed/
-│       └── sales_clean.csv        # Base higienizada e atualizada pela Loja Fachada
+│       └── sales_clean.csv     # Base higienizada e atualizada pela Loja Fachada
 ├── src/
 │   ├── __init__.py
-│   ├── etl.py                     # Pipeline de limpeza (ETL) e gravação de eventos ao vivo
-│   ├── metrics.py                 # Regras de negócio puras (receita, ticket, cancelamento, conversão)
-│   └── agent.py                   # Integração com OpenRouter, Tool Calling e fallback de modelos
-├── app.py                         # Interface principal em Streamlit (Painel, Chat e Loja)
-├── main.py                        # Ponto de entrada da aplicação
-├── .env.example                   # Modelo de variáveis de ambiente
-├── requirements.txt               # Dependências do projeto
+│   ├── etl.py                  # Pipeline de limpeza (ETL) e gravação de eventos ao vivo
+│   ├── metrics.py              # Regras de negócio puras (receita, ticket, cancelamento, conversão)
+│   └── agent.py                # Integração com OpenRouter, Tool Calling e fallback de modelos
+├── app.py                      # Interface principal em Streamlit (Painel, Chat e Loja)
+├── main.py                     # Ponto de entrada da aplicação
+├── .env.example                # Modelo de variáveis de ambiente
+├── requirements.txt            # Dependências do projeto
 └── README.md
 
 
@@ -66,7 +90,7 @@ Configuração de Ambiente: Python-dotenv
 
 1. Clonar o repositório
 
-git clone https://github.com/SEU-USUARIO/data-pilot-vendas.git
+git clone https://github.com/Cmarchi2003/data-pilot-vendas.git
 cd data-pilot-vendas
 
 
@@ -114,7 +138,7 @@ Acesse no navegador o endereço indicado no terminal (geralmente http://localhos
 
 🙌 Créditos e Aprendizado
 
-Este projeto foi desenvolvido com base no curso Data Pilot — Análise Inteligente de Dados com Agentes de IA da DIO (Digital Innovation One) e contou com o apoio do Gemini Pro para a expansão das métricas de negócio (funil de conversão por produto), resiliência do agente e construção do simulador de loja ao vivo.
+Este projeto foi desenvolvido por Carlos Eduardo Silva de Marchi com base no curso Data Pilot — Análise Inteligente de Dados com Agentes de IA da DIO (Digital Innovation One) e contou com o apoio do Gemini Pro para a expansão das métricas de negócio (funil de conversão por produto), resiliência do agente e construção do simulador de loja ao vivo.
 
 📝 Licença
 

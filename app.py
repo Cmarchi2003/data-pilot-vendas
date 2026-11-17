@@ -200,7 +200,7 @@ def render_chat(df: pd.DataFrame) -> None:
 
 
 def render_storefront(df: pd.DataFrame) -> None:
-    st.title(":material/storefront: :violet[Loja Fachada — Simulador ao Vivo]", anchor=False)
+    st.title(":material/storefront: :violet[Loja Marchi — Simulador ao Vivo]", anchor=False)
     st.caption(
         "Adicione produtos ao carrinho (intenção de compra) ou finalize o pedido. "
         "Cada ação grava diretamente no CSV e atualiza o painel e o agente na hora."
